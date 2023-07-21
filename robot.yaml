@@ -1,2 +1,7 @@
 tasks:
-  command:  python -m robocorp.tasks run tasks.py
+  main:
+    shell: python -m robocorp.tasks run tasks.py
+
+
+artifactsDir:
+  output
