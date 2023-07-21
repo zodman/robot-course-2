@@ -5,3 +5,6 @@ tasks:
 
 artifactsDir:
   output
+
+environmentConfigs:
+  - conda.yaml
