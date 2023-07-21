@@ -2,12 +2,14 @@ from robocorp.tasks import task
 from RPA.HTTP import HTTP
 from RPA.Tables import Tables
 from RPA.PDF import PDF
+from RPA.Archive import Archive
 from robocorp import browser
 import os
 
 browser.configure(headless=True)
 table = Tables()
 pdf = PDF()
+archive = Archive()
 
 output = os.path.join("files","orders.cvs") 
 
@@ -58,7 +60,12 @@ def process_file():
         html = template_html.format(text[0], img)
         pdf.html_to_pdf(html, f"files/{i['Order number']}.pdf")
 
+@task
+def archive_files():
+    if not os.path.exists("output"):
+        os.mkdir("output")
 
+    archive.archive_folder_with_zip("files/", "output/files.zip", include="*.pdf")
 
         
 
